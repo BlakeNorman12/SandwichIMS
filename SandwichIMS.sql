@@ -1,45 +1,30 @@
+DROP DATABASE IF EXISTS SandwichIMS;
+
 CREATE DATABASE SandwichIMS;
 
 USE SandwichIMS;
 
-CREATE TABLE Sales (
-	SaleID INT AUTO_INCREMENT PRIMARY KEY,
-    SaleDate DATE
-);
-
 
 CREATE TABLE Product (
-	ProductID INT AUTO_INCREMENT,
+	ProductID INT AUTO_INCREMENT PRIMARY KEY,
     ProductName VARCHAR(50),
     LastUpdated DATETIME,
     Quantity INT
 );
 
 
-CREATE TABLE SaleProduct (
-	SaleID INT,
-    ProductID INT,
-    Quantity INT,
-    FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
-    PRIMARY KEY (SaleID, ProductID)
-);
-
-
 CREATE TABLE Employee (
 	employeeID INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(50),
-    lastName VARCHAR(50)
+    lastName VARCHAR(50),
+    username VARCHAR(50),
+    password VARCHAR(255),
+    isManager BOOLEAN
 );
 
-
-CREATE TABLE InventoryEmployee (
-	employeeID INT,
-    accessGranted DATE,
-    isManager BOOLEAN,
-    PRIMARY KEY (employeeID),
-    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
-);
-
-
+INSERT INTO Employee (firstName, lastName, username, password, isManager) VALUES
+('Jordan', 'Levercom', 'jlevercom', '73567e977fbeb14cb66974484e2cf1ae7596b8744bdb7ddfd33457a0a44d5e44', TRUE),
+('Blake', 'Norman', 'bnorman', 'MasterPassword', TRUE),
+('Derrick', 'Strover-Duncan', 'dstrover', '73567e977fbeb14cb66974484e2cf1ae7596b8744bdb7ddfd33457a0a44d5e44', TRUE),
+('Elias', 'Gomez', 'egomez', '73567e977fbeb14cb66974484e2cf1ae7596b8744bdb7ddfd33457a0a44d5e44', TRUE);
 
